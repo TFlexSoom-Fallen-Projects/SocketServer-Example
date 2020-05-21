@@ -92,17 +92,18 @@ if __name__ == "__main__":
         f.write("")
         f.close()
 
-    server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler) with server:
-        ip, port = server.server_address
+    server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
+    
+    ip, port = server.server_address
 
-        # Start a thread with the server -- that thread will then start one
-        # more thread for each request
-        server_thread = threading.Thread(target=server.serve_forever)
-        # Exit the server thread when the main thread terminates
-        server_thread.daemon = True
-        server_thread.start()
+    # Start a thread with the server -- that thread will then start one
+    # more thread for each request
+    server_thread = threading.Thread(target=server.serve_forever)
+    # Exit the server thread when the main thread terminates
+    server_thread.daemon = True
+    server_thread.start()
 
-        print("Server loop running in thread:", server_thread.name)
+    print("Server loop running in thread:", server_thread.name)
 
-        input("Shutdown?")
-        server.shutdown()
+    input("Shutdown?")
+    server.shutdown()
