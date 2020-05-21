@@ -53,6 +53,28 @@ you could also try: `python3 server.py`. All of which will run the server
 I do not have a CLI or config file for this program. Please change the global variables
 inside of server.py
 
+## Messaging Scheme
+As this is a new application level built on top of TCP sockets, bytestrings are considered
+with the following scheme in mind.
+
+- `POST______%`
+- `GET%`
+- `MSG_______%`
+- `ERR_______%`
+
+
+Each one ends with a percent sign. This was chosen arbituarily because few people know about
+ascii tables. I would have used the _END OF TRANSMISSION BLOCK_ instead should this be a more
+realistic application. The Underscores represent space for parameters like messages.
+
+- *POST* : used by client to post a message.
+- *GET* : get all messages recently sent to server.
+- *MSG* : arbituary, currently used as a response from the server.
+- *ERR* : an erroneous response from the server.
+
+This scheme may be extended or changed. Although, I would expect application layers like HTTP
+to hold up better than this stuff.
+
 # Contributors
 - Tristan Hilbert
 - aka TFlexSoom
