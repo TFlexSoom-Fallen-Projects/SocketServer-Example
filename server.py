@@ -92,8 +92,7 @@ if __name__ == "__main__":
         f.write("")
         f.close()
 
-    server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler)
-    with server:
+    server = ThreadedTCPServer((HOST, PORT), ThreadedTCPRequestHandler) with server:
         ip, port = server.server_address
 
         # Start a thread with the server -- that thread will then start one
